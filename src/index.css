@@ -1,0 +1,57 @@
+* {
+  box-sizing: border-box;
+}
+
+body{
+  margin: 0;
+  font-family: Inter, sans-serrif;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 11px;
+  background-color: mintcream;
+  height: 80px;
+  box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.10), 0px 1px 2px 0px rgba(0,0,0,0.06);
+}
+
+header > img{
+  width: 45px;
+}
+
+header > h1{
+  font-weight: 400;
+}
+
+main{
+  padding: 25px 30px 15px;
+}
+
+.add-ingredient-form {
+  display: flex;
+  justify-content: center;
+  height: 32px;
+  gap: 12px;
+}
+
+.add-ingredient-form > input{
+  border-radius: 6px;
+  border: 1px solid #D1D5DB;
+  padding: 9px 13px;
+  box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.05);
+  flex-grow: 1;
+  min-width: 150px;
+  max-width: 400px;
+}
+
+.add-ingredient-form > button{
+  font-family: Inter, sans-serif;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(87, 86, 86);
+  color: #FAFAF9;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
