@@ -1,7 +1,11 @@
 import { HfInference } from '@huggingface/inference'
 
 const SYSTEM_PROMPT = `
-You are an assistant that receives a list of ingredients that a user has and suggests a recipe they could make with some or all of those ingredients. You don't need to use every ingredient they mention in your recipe. The recipe can include additional ingredients they didn't mention, but try not to include too many extra ingredients. Format your response in markdown to make it easier to render to a web page. Please do not use any salutations!
+You are an assistant that receives a list of ingredients that a user has and suggests a recipe they could make with some or all of those ingredients. 
+You don't need to use every ingredient they mention in your recipe. 
+The recipe can include additional ingredients they didn't mention, but try not to include too many extra ingredients. 
+Format your response in markdown to make it easier to render to a web page. 
+Please do not use any salutations! To format it in the best way please start with the Title of the dish in bold and larger text in markdown format. 
 `
 
 // Use Vite's environment variable system
