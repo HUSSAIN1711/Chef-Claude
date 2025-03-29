@@ -1,31 +1,41 @@
+import React from "react"
+import IngredientsList from "./IngredientsList"
+import ClaudeRecipe from "./ClaudeRecipe"
+import {getRecipeFromMistral} from "./ai"
+
 export default function Main() {
-    const ingredients = ["Chicken", "Oregano", "Tomoatoes"]
 
-    const ingredientsListItems = ingredients.map(ingredient => (<li key = {ingredient}>{ingredient}</li>))
+    const [ingredients, setIngredients] = React.useState([])
+    const [recipe, setRecipe]  = React.useState("")
+    
 
-    function handleSubmit(event) {
-        event.preventDefault()
-        const formData = new FormData(event.currentTarget)
-        const newIngredient = formData.get("ingredient")
-        ingredients.push(newIngredient)
-        console.log(ingredients)
+    async function getRecipe() {
+        const RecipeMarkdown = await getRecipeFromMistral(ingredients)
+        setRecipe(RecipeMarkdown)
     }
 
-    return(
+    function addIngredient(formData) {
+        const newIngredient = formData.get("ingredient")
+        setIngredients(prevIngredients => [...prevIngredients, newIngredient])
+    }
+
+    return (
         <main>
-            <form onSubmit={handleSubmit} className = "add-ingredient-form">
+            <form action={addIngredient} className="add-ingredient-form">
                 <input
-                    type = "text"
-                    placeholder = "e.g. tomatoes"
-                    aria-label = "Add Ingredient"
-                    name = "ingredient"
-                />        
-            
-                <button>Add Ingredient</button>
+                    type="text"
+                    placeholder="e.g. oregano"
+                    aria-label="Add ingredient"
+                    name="ingredient"
+                />
+                <button>Add ingredient</button>
             </form>
-            <ul>
-                {ingredientsListItems}
-            </ul>
+            {ingredients.length > 0 && 
+                <IngredientsList 
+                    ingredients = {ingredients}
+                    getRecipe = {getRecipe}/>
+            }
+            {recipe.length>0 && <ClaudeRecipe recipe = {recipe} />}
         </main>
     )
 }
